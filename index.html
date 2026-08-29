@@ -1,0 +1,1105 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mk's Hub Store | Exclusive Store & Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#ef4444',
+              600: '#dc2626',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen font-sans flex flex-col select-none transition-colors duration-300">
+
+  <header class="sticky top-0 z-40 bg-white/75 dark:bg-slate-950/75 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60 shadow-xs transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <button type="button" onclick="toggleMobileMenu(true)" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition bg-slate-200/50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer shadow-xs">
+          <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-600 to-orange-500 p-0.5 shadow-md shadow-red-600/30 group-hover:scale-105 transition duration-300 flex items-center justify-center">
+            <div class="w-full h-full bg-slate-900 dark:bg-slate-900 rounded-[14px] flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-tr from-red-600/20 to-transparent"></div>
+              <svg class="w-6 h-6 text-red-400 group-hover:text-white transition duration-300 transform scale-110" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-9-1a2 2 0 0 1 4 0v1h-4V6zm9 14H5V9h3v2h2V9h4v2h2V9h3v11z"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="tracking-wider">Mk's_Hub</span><span class="text-red-600 dark:text-red-500">Store</span>
+            </span>
+            <span class="block text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase -mt-1">THE STORE YOU'LL ADORE</span>
+          </div>
+        </a>
+      </div>
+      <nav class="hidden md:flex items-center space-x-2 bg-slate-100 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200/80 dark:border-slate-800 text-sm font-medium">
+        <a href="#" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition">Home</a>
+        <a href="#productGrid" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition">Catalog</a>
+        <button type="button" onclick="openAboutModal()" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer">About</button>
+        <button type="button" onclick="openHelpModal()" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer">Help</button>
+      </nav>
+
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <button id="adminNavBtn" type="button" onclick="openAdminPanel()" class="hidden items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold text-red-700 dark:text-red-300 hover:text-white transition bg-red-50/80 dark:bg-red-950/50 hover:bg-red-600 rounded-xl border border-red-200 dark:border-red-800 cursor-pointer animate-pulse shadow-xs">
+          <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span class="hidden sm:inline pointer-events-none">Admin Panel</span>
+        </button>
+
+        <button type="button" onclick="toggleWishlistModal(true)" class="relative p-2.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition bg-slate-200/50 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer shadow-xs">
+          <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span id="wishlistBadge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden pointer-events-none shadow-sm">0</span>
+        </button>
+
+        <button type="button" onclick="toggleCart(true)" class="relative p-2.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition bg-slate-200/50 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl border border-slate-200 dark:border-slate-700 cursor-pointer shadow-xs">
+          <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden pointer-events-none shadow-sm">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <div id="mobileMenu" class="fixed inset-0 z-50 flex hidden">
+    <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 w-72 h-full shadow-2xl z-10 flex flex-col p-6 space-y-6 transition-colors border-r border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <span class="text-lg font-black text-slate-900 dark:text-white">Menu</span>
+        <button type="button" onclick="toggleMobileMenu(false)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+          <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="flex flex-col space-y-3 font-medium">
+        <a href="#" onclick="toggleMobileMenu(false)" class="px-4 py-3 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center space-x-3">
+          <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="#productGrid" onclick="toggleMobileMenu(false)" class="px-4 py-3 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center space-x-3">
+          <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <span>Catalog</span>
+        </a>
+        <button type="button" onclick="toggleMobileMenu(false); openAboutModal();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center space-x-3 cursor-pointer">
+          <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>About</span>
+        </button>
+        <button type="button" onclick="toggleMobileMenu(false); openHelpModal();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center space-x-3 cursor-pointer">
+          <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Help</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 flex-grow w-full">
+    
+    <div class="relative overflow-hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-12 mb-6 sm:mb-8 shadow-sm transition-colors duration-300">
+      <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-red-500/10 dark:bg-red-950/40 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-15 max-w-2xl">
+        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Explore More at Mk's_Hub Store</h1>
+        <p class="text-xs sm:text-base text-slate-600 dark:text-slate-300 mt-2 sm:mt-3 leading-relaxed">Made for people who love to explore - New drops, classic fits, and cool gadgets we think you'll adore....</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 sm:mb-8">
+      <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+        <div class="relative w-full sm:w-64">
+          <input 
+            type="text" 
+            id="searchInput" 
+            oninput="handleSearch()" 
+            placeholder="Search items, specs, categories..." 
+            class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 placeholder-slate-400 text-sm shadow-xs transition-colors"
+          />
+          <svg class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+
+        <select id="sortSelect" onchange="handleSortChange()" class="py-2.5 px-3 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 text-sm shadow-xs transition-colors cursor-pointer w-full sm:w-auto">
+          <option value="default">Sort By: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none w-full lg:w-auto" id="categoryButtons">
+        <button type="button" onclick="filterCategory('All')" class="cat-btn active flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-red-600 text-white text-xs sm:text-sm font-medium transition shadow-md shadow-red-600/20 cursor-pointer">All Items</button>
+        <button type="button" onclick="filterCategory('Fashion')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Fashion</button>
+        <button type="button" onclick="filterCategory('Electronics')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Electronics</button>
+        <button type="button" onclick="filterCategory('Footwear')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Footwear</button>
+        <button type="button" onclick="filterCategory('Key Chains')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Key Chains</button>
+        <button type="button" onclick="filterCategory('Cap')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Cap</button>
+        <button type="button" onclick="filterCategory('Beauty')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Beauty</button>
+      </div>
+    </div>
+
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"></div>
+
+  </main>
+
+  <div id="aboutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="closeAboutModal()" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl z-10 transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <h3 class="text-xl font-black text-slate-900 dark:text-white">About Mk's Hub Store</h3>
+        <button type="button" onclick="closeAboutModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+          <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="py-4 space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p>Welcome to <strong>Mk's Hub Store</strong>—the ultimate destination for curated lifestyle essentials, cool gadgets, and trendy drops.</p>
+        <p>We built this platform to provide a seamless, modern shopping experience with direct WhatsApp checkout support and a top-tier catalog you'll genuinely adore.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="helpModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="closeHelpModal()" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl z-10 transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <h3 class="text-xl font-black text-slate-900 dark:text-white">Store Help & Support</h3>
+        <button type="button" onclick="closeHelpModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+          <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="py-4 space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p><strong>How to Shop:</strong> Browse our catalog, select items you love, and add them to your cart.</p>
+        <p><strong>Checkout:</strong> Open your cart, select the items you want to purchase, and click "Checkout Selected via WhatsApp" to send your order directly to us!</p>
+        <p>Need extra help? Reach out directly through WhatsApp at our support line.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="productViewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="closeProductView()" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl z-10 flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto transition-colors">
+      
+      <button type="button" onclick="closeProductView()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 z-20 bg-slate-100 dark:bg-slate-800 rounded-full cursor-pointer transition border border-slate-200 dark:border-slate-700">
+        <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="w-full md:w-1/2 flex flex-col gap-4">
+        <div onclick="openFullScreenImage(document.getElementById('modalProdImg').src)" class="w-full relative bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center shadow-inner aspect-square cursor-zoom-in group">
+          <img id="modalProdImg" src="" alt="Product Detail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 pointer-events-none">
+          <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+            <span class="bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">Tap to zoom full screen</span>
+          </div>
+          <div id="modalProdRating" class="absolute bottom-3 left-3 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md px-3 py-1 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center space-x-1.5 text-xs font-bold text-amber-500 shadow-xs"></div>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Select Quantity</span>
+            <div class="flex items-center space-x-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl">
+              <button type="button" onclick="adjustModalQty(-1)" class="text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-bold cursor-pointer">-</button>
+              <span id="modalProdQty" class="text-sm font-bold text-slate-900 dark:text-white w-4 text-center">1</span>
+              <button type="button" onclick="adjustModalQty(1)" class="text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-bold cursor-pointer">+</button>
+            </div>
+          </div>
+          <button id="modalAddToCartBtn" type="button" class="w-full py-3 bg-red-600 hover:bg-red-500 text-white font-semibold text-xs rounded-xl shadow-md shadow-red-600/20 transition cursor-pointer flex items-center justify-center space-x-2">
+            <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <span class="pointer-events-none">Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <span id="modalProdCategory" class="inline-block text-[11px] font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/60 border border-red-100 dark:border-red-900 px-2.5 py-0.5 rounded-full uppercase tracking-wider"></span>
+          <h2 id="modalProdName" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-tight"></h2>
+          
+          <div class="flex items-baseline space-x-3 pt-1">
+            <span id="modalProdPrice" class="text-2xl font-black text-slate-900 dark:text-white"></span>
+            <span id="modalProdOriginalPrice" class="text-sm text-slate-400 line-through"></span>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Product Highlights</p>
+            <p id="modalProdSpecs" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-200 dark:border-slate-800 pt-4 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Customer Reviews</h4>
+          
+          <div id="modalReviewsList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+
+          <form onsubmit="handleReviewSubmit(event)" class="bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
+            <p class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Leave Your Review</p>
+            <div class="flex items-center space-x-2">
+              <input type="text" id="reviewAuthor" required placeholder="Your Name" class="w-1/2 px-2.5 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500" />
+              <select id="reviewRating" class="w-1/2 px-2.5 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500">
+                <option value="5">★★★★★ (5/5)</option>
+                <option value="4">★★★★☆ (4/5)</option>
+                <option value="3">★★★☆☆ (3/5)</option>
+                <option value="2">★★☆☆☆ (2/5)</option>
+                <option value="1">★☆☆☆☆ (1/5)</option>
+              </select>
+            </div>
+            <input type="text" id="reviewComment" required placeholder="Write your experience..." class="w-full px-2.5 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500" />
+            <button type="submit" class="w-full py-1.5 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 text-white font-medium text-[11px] rounded-lg transition cursor-pointer">Submit Review</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="fullScreenLightbox" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-md flex items-center justify-center hidden p-2 sm:p-6">
+    <button type="button" onclick="closeFullScreenImage()" class="absolute top-5 right-5 text-white bg-white/10 hover:bg-white/20 p-3 rounded-full cursor-pointer transition border border-white/20 shadow-xl z-20">
+      <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="relative max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center">
+      <img id="lightboxImg" src="" alt="Full Screen Zoom" class="max-w-full max-h-full object-contain rounded-2xl shadow-2xl pointer-events-none">
+    </div>
+  </div>
+
+  <div id="adminModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="closeAdminPanel()" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl z-10 max-h-[85vh] flex flex-col transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Store Inventory Manager</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Upload pictures directly from your device and manage listings.</p>
+        </div>
+        <button type="button" onclick="closeAdminPanel()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+          <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto py-4 space-y-6 flex-grow pr-1">
+        
+        <form onsubmit="handleAddNewProduct(event)" class="bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+          <h4 class="text-sm font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider">Publish New Product Listing</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Product Name</label>
+              <input type="text" id="newProdName" required placeholder="e.g. Oversized Hoodie" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Category</label>
+              <select id="newProdCategory" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none">
+                <option value="Fashion">Fashion</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Footwear">Footwear</option>
+                <option value="Key Chains">Key Chains</option>
+                <option value="Cap">Cap</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Original Price (₹)</label>
+              <input type="number" id="newProdOriginalPrice" required placeholder="1999" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Discount Price (₹)</label>
+              <input type="number" id="newProdPrice" required placeholder="1499" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Rating (1-5)</label>
+              <input type="number" step="0.1" min="1" max="5" id="newProdRating" value="4.8" required class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Details / Specs</label>
+              <input type="text" id="newProdSpecs" required placeholder="100% Cotton • Premium Fit" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Product Picture</label>
+              <input 
+                type="file" 
+                id="newProdImageFile" 
+                accept="image/*" 
+                required 
+                class="w-full text-xs text-slate-500 dark:text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-600 dark:file:bg-red-950 dark:file:text-red-300 hover:file:bg-red-100 cursor-pointer bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl" 
+              />
+            </div>
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-medium text-xs rounded-xl transition shadow-sm cursor-pointer">
+            Publish Product to Store
+          </button>
+        </form>
+
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Active Inventory (<span id="adminTotalCount">0</span>)</h4>
+            <span class="text-xs text-slate-400">Update pricing, ratings, or delete items</span>
+          </div>
+          <div id="adminProductList" class="space-y-3"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="cartDrawer" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hidden">
+    <div onclick="toggleCart(false)" class="absolute inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md"></div>
+
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-4xl w-full h-[85vh] flex flex-col shadow-2xl z-10 transition-colors overflow-hidden">
+      
+      <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between flex-shrink-0">
+        <div>
+          <h2 class="text-xl font-black text-slate-900 dark:text-white">Your Shopping Cart</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Select the items you are willing to buy and proceed to checkout.</p>
+        </div>
+        <button type="button" onclick="toggleCart(false)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 bg-slate-100 dark:bg-slate-800 rounded-full cursor-pointer transition border border-slate-200 dark:border-slate-700">
+          <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div id="cartSelectAllBar" class="hidden px-6 py-2.5 bg-slate-100 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between flex-shrink-0 text-xs">
+        <label class="flex items-center space-x-2 font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
+          <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAllItems(this.checked)" class="w-4 h-4 text-red-600 rounded border-slate-300 focus:ring-red-500 cursor-pointer" />
+          <span>Select All Items</span>
+        </label>
+        <button type="button" onclick="removeSelectedCartItems()" class="text-red-600 dark:text-red-400 hover:underline font-semibold cursor-pointer">Delete Selected</button>
+      </div>
+
+      <div id="cartItemsList" class="flex-grow overflow-y-auto p-6 space-y-4"></div>
+
+      <div class="p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 flex flex-col sm:flex-row items-center justify-between gap-4 flex-shrink-0">
+        <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
+          <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Selected Subtotal:</span>
+          <span id="cartTotal" class="text-2xl font-black text-slate-900 dark:text-white">₹0</span>
+        </div>
+        <button type="button" onclick="openOrderModal()" class="w-full sm:w-auto py-3 px-8 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl shadow-md flex items-center justify-center space-x-2 transition text-sm cursor-pointer">
+          <svg class="w-4 h-4 fill-current pointer-events-none" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span class="pointer-events-none">Checkout Selected via WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="orderModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="closeOrderModal()" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl z-10 max-h-[90vh] overflow-y-auto transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Order Receipt & Shipping Info</h3>
+        <button type="button" onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer">
+          <svg class="w-6 h-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-4">
+        <div class="bg-slate-50 dark:bg-slate-800/40 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
+          <p class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Selected Items Summary</p>
+          <div id="orderReceiptItems" class="space-y-1 text-xs text-slate-600 dark:text-slate-300"></div>
+          <div class="pt-2 border-t border-slate-200 dark:border-slate-700 flex justify-between font-bold text-sm text-slate-900 dark:text-white">
+            <span>Total Payable:</span>
+            <span id="orderReceiptTotal">₹0</span>
+          </div>
+        </div>
+
+        <form onsubmit="submitOrderToWhatsApp(event)" class="space-y-3">
+          <div>
+            <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Full Name</label>
+            <input type="text" id="custName" required placeholder="Enter your full name" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-600 dark:text-slate-300 mb-1">Phone Number</label>
+            <input type="tel" id="custPhone" required placeholder="Enter 10-digit mobile number" class="w-full px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-red-500 focus:outline-none" />
+          </div>
+          <!-- Delivery Address Section -->
+<div class="space-y-3 mb-4">
+  <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Shipping Details</label>
+  
+  <!-- Street / Delivery Address -->
+  <div>
+    <label class="block text-xs text-gray-500 mb-1">Delivery Address</label>
+    <input type="text" id="custAddress" placeholder="House no, Street name / Area" required class="w-full p-2.5 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-700 rounded-lg text-sm outline-none">
+  </div>
+
+  <!-- Pincode & City (Side by Side) -->
+  <div class="grid grid-cols-2 gap-2">
+    <div>
+      <label class="block text-xs text-gray-500 mb-1">Pincode</label>
+      <input type="text" id="custPincode" placeholder="e.g. 781136" required class="w-full p-2.5 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-700 rounded-lg text-sm outline-none">
+    </div>
+    <div>
+      <label class="block text-xs text-gray-500 mb-1">City</label>
+      <input type="text" id="custCity" placeholder="City name" required class="w-full p-2.5 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-700 rounded-lg text-sm outline-none">
+    </div>
+  </div>
+
+  <!-- State -->
+  <div>
+    <label class="block text-xs text-gray-500 mb-1">State</label>
+    <input type="text" id="custState" placeholder="State name" required class="w-full p-2.5 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-700 rounded-lg text-sm outline-none">
+  </div>
+</div>
+          <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl shadow-md transition cursor-pointer flex items-center justify-center space-x-2">
+            <svg class="w-4 h-4 fill-current pointer-events-none" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>Confirm & Send Selected Order via WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="wishlistModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div onclick="toggleWishlistModal(false)" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl z-10 max-h-[85vh] flex flex-col transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-xl font-black text-slate-900 dark:text-white">Your Saved Wishlist</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Review items you've bookmarked and move them directly to your cart.</p>
+        </div>
+        <button type="button" onclick="toggleWishlistModal(false)" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 bg-slate-100 dark:bg-slate-800 rounded-full cursor-pointer transition border border-slate-200 dark:border-slate-700">
+          <svg class="w-5 h-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="wishlistItemsList" class="flex-grow overflow-y-auto py-4 space-y-4 pr-1"></div>
+    </div>
+  </div>
+
+  <script>
+    const defaultProducts = [
+      { id: 1, name: 'Oversized Streetwear Hoodie', category: 'Fashion', originalPrice: 1999, price: 1499, rating: 4.8, specs: '100% Cotton • Heavyweight', image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Rahul M.', rating: 5, comment: 'Super premium fabric and fits perfectly!' }] },
+      { id: 2, name: 'Wireless Bluetooth Earbuds', category: 'Electronics', originalPrice: 2999, price: 1999, rating: 4.7, specs: 'Deep Bass • 30H Playtime', image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Ananya S.', rating: 5, comment: 'Amazing battery life and crisp bass.' }] },
+      { id: 4, name: 'Anime Metal Key Chain', category: 'Key Chains', originalPrice: 499, price: 299, rating: 4.6, specs: 'Durable Alloy • Scratch Resistant', image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Sengrak M.', rating: 4, comment: 'Looks great on my backpack!' }] },
+      { id: 5, name: 'Classic Streetwear Baseball Cap', category: 'Cap', originalPrice: 799, price: 499, rating: 4.5, specs: 'Adjustable Strap • Cotton', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Dipankar B.', rating: 5, comment: 'Clean embroidery and solid fit.' }] },
+      { id: 6, name: 'wireless headphone', category: 'Electronics', originalPrice: 3499, price: 2499, rating: 4.7, specs: 'Heart Rate • IP68 Waterproof', image: 'https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Priya D.', rating: 5, comment: 'Tracks sleep and workouts seamlessly.' }] }
+      
+    ];
+
+    let products = JSON.parse(localStorage.getItem('mkshub_products')) || defaultProducts;
+    let cart = JSON.parse(localStorage.getItem('mkshub_cart')) || [];
+    cart = cart.map(item => ({ ...item, selected: item.selected !== false }));
+
+    let wishlist = JSON.parse(localStorage.getItem('mkshub_wishlist')) || [];
+    
+    let currentCategory = 'All';
+    let currentSearchQuery = '';
+    let currentSortOption = 'default';
+    let activeModalProductId = null;
+    let modalQuantity = 1;
+
+    function initStore() {
+      if (localStorage.getItem('mkshub_theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+
+      renderProducts();
+      updateCartUI();
+      updateWishlistUI();
+      
+      if (sessionStorage.getItem('mkshub_admin_unlocked') === 'true') {
+        showAdminButton();
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+          e.preventDefault();
+          sessionStorage.setItem('mkshub_admin_unlocked', 'true');
+          showAdminButton();
+          openAdminPanel();
+        }
+      });
+    }
+
+    function toggleMobileMenu(show) {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('hidden', !show);
+    }
+
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.remove('hidden');
+    }
+
+    function closeAboutModal() {
+      document.getElementById('aboutModal').classList.add('hidden');
+    }
+
+    function openHelpModal() {
+      document.getElementById('helpModal').classList.remove('hidden');
+    }
+
+    function closeHelpModal() {
+      document.getElementById('helpModal').classList.add('hidden');
+    }
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('mkshub_theme', isDark ? 'dark' : 'light');
+    }
+
+    function showAdminButton() {
+      const btn = document.getElementById('adminNavBtn');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.classList.add('flex');
+      }
+    }
+
+    function saveProducts() {
+      localStorage.setItem('mkshub_products', JSON.stringify(products));
+      renderProducts();
+      renderAdminProductList();
+    }
+
+    function saveCart() {
+      localStorage.setItem('mkshub_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function handleSearch() {
+      currentSearchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+      renderProducts();
+    }
+
+    function handleSortChange() {
+      currentSortOption = document.getElementById('sortSelect').value;
+      renderProducts();
+    }
+
+    function filterCategory(category) {
+      currentCategory = category;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        const btnText = btn.innerText.trim();
+        const matches = (category === 'All' && btnText === 'All Items') || btnText === category;
+        btn.className = matches ? 'cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-red-600 text-white text-xs sm:text-sm font-medium transition shadow-md shadow-red-600/20 cursor-pointer' : 'cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs';
+      });
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('productGrid');
+      if (!container) return;
+
+      let filtered = products.filter(p => {
+        const matchesCategory = (currentCategory === 'All' || p.category === currentCategory);
+        const matchesSearch = 
+          p.name.toLowerCase().includes(currentSearchQuery) || 
+          p.category.toLowerCase().includes(currentSearchQuery) || 
+          (p.specs && p.specs.toLowerCase().includes(currentSearchQuery));
+        
+        return matchesCategory && matchesSearch;
+      });
+      
+      if (currentSortOption === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (currentSortOption === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+            <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">No products found</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Try checking your spelling or searching for a different keyword.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(product => {
+        const isWishlisted = wishlist.includes(product.id);
+        const origPrice = product.originalPrice || Math.round(product.price * 1.3);
+        
+        let avgRating = product.rating || 4.7;
+        if (product.reviews && product.reviews.length > 0) {
+          const sum = product.reviews.reduce((acc, r) => acc + Number(r.rating), 0);
+          avgRating = (sum / product.reviews.length).toFixed(1);
+        }
+
+        return `
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-red-400 dark:hover:border-red-600 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between relative shadow-xs hover:shadow-xl transition-all duration-300 group">
+            <button type="button" onclick="toggleWishlist(${product.id}); event.stopPropagation();" class="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-10 p-2 sm:p-2.5 rounded-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition cursor-pointer shadow-xs border border-slate-200/60 dark:border-slate-700/60">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 pointer-events-none ${isWishlisted ? 'fill-rose-500 text-rose-500' : 'text-slate-600 dark:text-slate-300'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </button>
+            
+            <div onclick="openProductView(${product.id})" class="cursor-pointer">
+              <div class="relative overflow-hidden aspect-square bg-slate-100 dark:bg-slate-800">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 pointer-events-none">
+                <div class="absolute bottom-2.5 left-2.5 sm:bottom-3 sm:left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center space-x-1 text-[11px] sm:text-xs font-bold text-amber-500 shadow-xs">
+                  <span>★</span><span>${avgRating}</span>
+                </div>
+              </div>
+
+              <div class="p-3 sm:p-5 pb-2">
+                <span class="text-[10px] sm:text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">${product.category}</span>
+                <h3 class="text-xs sm:text-base font-bold text-slate-900 dark:text-white mt-0.5 sm:mt-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition line-clamp-1">${product.name}</h3>
+                <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-1">${product.specs || ''}</p>
+              </div>
+            </div>
+
+            <div class="p-3 sm:p-5 pt-0">
+              <div class="mt-2 sm:mt-4 flex flex-col sm:flex-row sm:items-center justify-between pt-2.5 sm:pt-3 border-t border-slate-100 dark:border-slate-800/80 gap-2">
+                <div class="flex items-center sm:flex-col justify-between sm:justify-start">
+                  <span class="text-[10px] sm:text-xs text-slate-400 line-through">₹${origPrice}</span>
+                  <span class="text-sm sm:text-lg font-black text-slate-900 dark:text-white">₹${product.price}</span>
+                </div>
+                <button type="button" onclick="addToCart(${product.id})" class="w-full sm:w-auto px-3 py-2 sm:px-4 sm:py-2.5 bg-red-600 hover:bg-red-500 text-white text-[11px] sm:text-xs font-semibold rounded-xl shadow-md shadow-red-600/20 transition cursor-pointer">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openFullScreenImage(imgSrc) {
+      const lightbox = document.getElementById('fullScreenLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      if (lightbox && lightboxImg) {
+        lightboxImg.src = imgSrc;
+        lightbox.classList.remove('hidden');
+      }
+    }
+
+    function closeFullScreenImage() {
+      const lightbox = document.getElementById('fullScreenLightbox');
+      if (lightbox) lightbox.classList.add('hidden');
+    }
+
+    function openProductView(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      
+      activeModalProductId = productId;
+      modalQuantity = 1;
+
+      document.getElementById('modalProdImg').src = product.image;
+      document.getElementById('modalProdCategory').innerText = product.category;
+      document.getElementById('modalProdName').innerText = product.name;
+      document.getElementById('modalProdOriginalPrice').innerText = `₹${product.originalPrice || Math.round(product.price * 1.3)}`;
+      document.getElementById('modalProdPrice').innerText = `₹${product.price}`;
+      document.getElementById('modalProdSpecs').innerText = product.specs || 'No extra specifications provided.';
+      document.getElementById('modalProdQty').innerText = modalQuantity;
+      
+      let avgRating = product.rating || 4.7;
+      if (product.reviews && product.reviews.length > 0) {
+        const sum = product.reviews.reduce((acc, r) => acc + Number(r.rating), 0);
+        avgRating = (sum / product.reviews.length).toFixed(1);
+      }
+      document.getElementById('modalProdRating').innerHTML = `<span>★</span><span>${avgRating}</span> <span class="text-slate-400 text-[11px] font-normal">(${product.reviews ? product.reviews.length : 0} reviews)</span>`;
+
+      renderModalReviews(product);
+
+      const addBtn = document.getElementById('modalAddToCartBtn');
+      addBtn.onclick = function() {
+        addModalProductToCart(productId);
+      };
+
+      document.getElementById('productViewModal').classList.remove('hidden');
+    }
+
+    function renderModalReviews(product) {
+      const container = document.getElementById('modalReviewsList');
+      if (!container) return;
+
+      if (!product.reviews || product.reviews.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic py-1">No reviews yet. Be the first to review!</p>`;
+        return;
+      }
+
+      container.innerHTML = product.reviews.map(rev => `
+        <div class="bg-white dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-900 dark:text-white">${rev.author}</span>
+            <span class="text-amber-500 font-bold">${'★'.repeat(rev.rating)}${'☆'.repeat(5 - rev.rating)}</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300">${rev.comment}</p>
+        </div>
+      `).join('');
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      if (!activeModalProductId) return;
+
+      const author = document.getElementById('reviewAuthor').value.trim();
+      const rating = Number(document.getElementById('reviewRating').value);
+      const comment = document.getElementById('reviewComment').value.trim();
+
+      const product = products.find(p => p.id === activeModalProductId);
+      if (product) {
+        if (!product.reviews) product.reviews = [];
+        product.reviews.unshift({ author, rating, comment });
+        saveProducts();
+        openProductView(activeModalProductId);
+        e.target.reset();
+        alert("Review submitted successfully!");
+      }
+    }
+
+    function closeProductView() {
+      document.getElementById('productViewModal').classList.add('hidden');
+      activeModalProductId = null;
+    }
+
+    function adjustModalQty(delta) {
+      modalQuantity += delta;
+      if (modalQuantity < 1) modalQuantity = 1;
+      document.getElementById('modalProdQty').innerText = modalQuantity;
+    }
+
+    function addModalProductToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      
+      const existing = cart.find(i => i.id === product.id);
+      if (existing) {
+        existing.quantity += modalQuantity;
+      } else {
+        cart.push({ ...product, quantity: modalQuantity, selected: true });
+      }
+      
+      saveCart();
+      closeProductView();
+      toggleCart(true);
+    }
+
+    function openAdminPanel() {
+      renderAdminProductList();
+      const modal = document.getElementById('adminModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          const firstInput = document.getElementById('newProdName');
+          if (firstInput) firstInput.focus();
+        }, 100);
+      }
+    }
+
+    function closeAdminPanel() {
+      const modal = document.getElementById('adminModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderAdminProductList() {
+      const container = document.getElementById('adminProductList');
+      const countLabel = document.getElementById('adminTotalCount');
+      if (!container) return;
+      
+      countLabel.innerText = products.length;
+
+      container.innerHTML = products.map(p => `
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-700 gap-3">
+          <div class="flex items-center space-x-3 truncate">
+            <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg flex-shrink-0 bg-white border border-slate-200 dark:border-slate-700 pointer-events-none">
+            <div class="truncate">
+              <h5 class="text-xs font-bold text-slate-900 dark:text-white truncate">${p.name}</h5>
+              <div class="flex items-center space-x-2 mt-0.5">
+                <span class="text-[10px] bg-red-50 dark:bg-red-950 text-red-600 dark:text-red-400 px-1.5 py-0.5 rounded font-medium border border-red-100 dark:border-red-900">${p.category}</span>
+                <span class="text-[10px] text-amber-500 font-bold">★ ${p.rating || 4.7}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 flex-shrink-0">
+            <div class="flex items-center space-x-1">
+              <span class="text-[10px] text-slate-400">Orig:₹</span>
+              <input type="number" value="${p.originalPrice || (p.price + 500)}" onchange="updateProductField(${p.id}, 'originalPrice', this.value)" class="w-16 px-1.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500" />
+            </div>
+            <div class="flex items-center space-x-1">
+              <span class="text-[10px] text-slate-400">₹</span>
+              <input type="number" value="${p.price}" onchange="updateProductField(${p.id}, 'price', this.value)" class="w-16 px-1.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs rounded-lg focus:outline-none focus:ring-1 focus:ring-red-500" />
+            </div>
+            <button type="button" onclick="deleteProduct(${p.id})" title="Remove Listing" class="text-slate-400 hover:text-rose-500 p-1.5 bg-white dark:bg-slate-800 hover:bg-rose-50 border border-slate-200 dark:border-slate-700 rounded-lg transition cursor-pointer">
+              <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleAddNewProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('newProdName').value;
+      const category = document.getElementById('newProdCategory').value;
+      const originalPrice = Number(document.getElementById('newProdOriginalPrice').value);
+      const price = Number(document.getElementById('newProdPrice').value);
+      const rating = Number(document.getElementById('newProdRating').value);
+      const specs = document.getElementById('newProdSpecs').value;
+      const fileInput = document.getElementById('newProdImageFile');
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(uploadEvent) {
+          const newProduct = {
+            id: Date.now(),
+            name,
+            category,
+            originalPrice,
+            price,
+            rating,
+            specs,
+            image: uploadEvent.target.result,
+            reviews: []
+          };
+
+          products.unshift(newProduct);
+          saveProducts();
+          e.target.reset();
+          alert("Product successfully published with your chosen image!");
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        alert("Please select an image file.");
+      }
+    }
+
+    function updateProductField(id, field, value) {
+      const p = products.find(item => item.id === id);
+      if (p) {
+        p[field] = Number(value);
+        saveProducts();
+      }
+    }
+
+    function deleteProduct(id) {
+      if (confirm("Are you sure you want to remove this listing?")) {
+        products = products.filter(item => item.id !== id);
+        saveProducts();
+      }
+    }
+
+    function toggleWishlist(productId) {
+      const idx = wishlist.indexOf(productId);
+      if (idx > -1) wishlist.splice(idx, 1);
+      else wishlist.push(productId);
+      
+      localStorage.setItem('mkshub_wishlist', JSON.stringify(wishlist));
+      updateWishlistUI();
+      renderProducts();
+    }
+
+    function updateWishlistUI() {
+      const badge = document.getElementById('wishlistBadge');
+      const listContainer = document.getElementById('wishlistItemsList');
+      if (!badge || !listContainer) return;
+
+      badge.innerText = wishlist.length;
+      badge.classList.toggle('hidden', wishlist.length === 0);
+
+      listContainer.innerHTML = wishlist.length === 0 
+        ? `<p class="text-slate-500 dark:text-slate-400 text-center py-12 text-sm">Your wishlist is empty. Heart items to save them here.</p>`
+        : wishlist.map(id => {
+            const p = products.find(item => item.id === id);
+            if (!p) return '';
+            return `
+              <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 gap-4">
+                <div class="flex items-center space-x-4 cursor-pointer truncate" onclick="toggleWishlistModal(false); openProductView(${p.id})">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex-shrink-0 shadow-xs">
+                    <img src="${p.image}" class="w-full h-full object-cover pointer-events-none hover:scale-105 transition duration-300">
+                  </div>
+                  <div class="truncate">
+                    <span class="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">${p.category}</span>
+                    <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-400 transition truncate">${p.name}</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${p.specs || ''}</p>
+                    <p class="text-sm font-black text-slate-900 dark:text-white mt-1">₹${p.price}</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2 flex-shrink-0">
+                  <button type="button" onclick="addToCart(${p.id}); toggleWishlistModal(false);" class="px-4 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-semibold rounded-xl shadow-xs transition cursor-pointer flex items-center space-x-1.5">
+                    <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span class="hidden sm:inline">Add to Cart</span>
+                    </button>
+                  <button type="button" onclick="toggleWishlist(${p.id})" title="Remove from Wishlist" class="p-2.5 text-slate-400 hover:text-rose-500 bg-white dark:bg-slate-800 hover:bg-rose-50 border border-slate-200 dark:border-slate-700 rounded-xl transition cursor-pointer">
+                    <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('');
+    }
+
+    function toggleWishlistModal(show) {
+      updateWishlistUI();
+      const modal = document.getElementById('wishlistModal');
+      if (modal) modal.classList.toggle('hidden', !show);
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.id !== productId);
+        }
+      }
+      saveCart();
+    }
+
+    function toggleCartItemSelection(productId) {
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        item.selected = !item.selected;
+        saveCart();
+      }
+    }
+
+    function toggleSelectAllItems(isChecked) {
+      cart.forEach(item => {
+        item.selected = isChecked;
+      });
+      saveCart();
+    }
+
+    function removeCartItem(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      saveCart();
+    }
+
+    function removeSelectedCartItems() {
+      cart = cart.filter(i => !i.selected);
+      saveCart();
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      const existing = cart.find(i => i.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+        existing.selected = true;
+      } else {
+        cart.push({ ...product, quantity: 1, selected: true });
+      }
+      saveCart();
+      toggleCart(true);
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const selectedTotalPrice = cart.filter(i => i.selected).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      
+      const badge = document.getElementById('cartBadge');
+      const itemsList = document.getElementById('cartItemsList');
+      const cartTotal = document.getElementById('cartTotal');
+      const selectAllBar = document.getElementById('cartSelectAllBar');
+      const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+
+      if (!badge || !itemsList || !cartTotal) return;
+
+      badge.innerText = totalCount;
+      badge.classList.toggle('hidden', totalCount === 0);
+
+      if (cart.length === 0) {
+        if (selectAllBar) selectAllBar.classList.add('hidden');
+        itemsList.innerHTML = `<p class="text-slate-500 dark:text-slate-400 text-center py-20 text-sm">Your cart is empty.</p>`;
+        cartTotal.innerText = `₹0`;
+        return;
+      }
+
+      if (selectAllBar) selectAllBar.classList.remove('hidden');
+      if (selectAllCheckbox) {
+        selectAllCheckbox.checked = cart.length > 0 && cart.every(i => i.selected);
+      }
+      
+      itemsList.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl border ${item.selected ? 'border-red-500/50 dark:border-red-500/50' : 'border-slate-200 dark:border-slate-700 opacity-75'} gap-3 sm:gap-4 transition">
+          <div class="flex items-center space-x-3 truncate">
+            <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleCartItemSelection(${item.id})" class="w-4 h-4 text-red-600 rounded border-slate-300 focus:ring-red-500 cursor-pointer flex-shrink-0" />
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex-shrink-0 shadow-xs">
+              <img src="${item.image}" class="w-full h-full object-cover pointer-events-none">
+            </div>
+            <div class="truncate">
+              <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">${item.name}</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${item.specs || ''}</p>
+              <p class="text-sm font-black text-red-600 dark:text-red-400 mt-1">₹${item.price}</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
+            <div class="flex items-center space-x-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl">
+              <button type="button" onclick="updateQuantity(${item.id}, -1)" class="text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold px-1 cursor-pointer">-</button>
+              <span class="text-xs font-semibold text-slate-900 dark:text-white w-4 text-center">${item.quantity}</span>
+              <button type="button" onclick="updateQuantity(${item.id}, 1)" class="text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold px-1 cursor-pointer">+</button>
+            </div>
+
+            <button type="button" onclick="removeCartItem(${item.id})" title="Delete Item" class="p-2 text-slate-400 hover:text-rose-500 bg-white dark:bg-slate-800 hover:bg-rose-50 border border-slate-200 dark:border-slate-700 rounded-xl transition cursor-pointer">
+              <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      cartTotal.innerText = `₹${selectedTotalPrice}`;
+    }
+
+    function openOrderModal() {
+      const selectedItems = cart.filter(i => i.selected);
+      if (selectedItems.length === 0) {
+        alert("Please select at least one item you are willing to buy!");
+        return;
+      }
+      toggleCart(false);
+
+      const itemsContainer = document.getElementById('orderReceiptItems');
+      const totalContainer = document.getElementById('orderReceiptTotal');
+      
+      itemsContainer.innerHTML = selectedItems.map(item => `
+        <div class="flex justify-between">
+          <span>${item.name} (x${item.quantity})</span>
+          <span>₹${item.price * item.quantity}</span>
+        </div>
+      `).join('');
+
+      const totalPrice = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      totalContainer.innerText = `₹${totalPrice}`;
+
+      document.getElementById('orderModal').classList.remove('hidden');
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').classList.add('hidden');
+    }
+
+    function submitOrderToWhatsApp(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const pincode = document.getElementById('custPincode').value.trim();
+      const city = document.getElementById('custCity').value.trim();
+      const state = document.getElementById('custState').value.trim();
+
+      const selectedItems = cart.filter(i => i.selected);
+      const phoneNumber = "917086856971"; 
+      let message = `🛒 *New Order from Mk's Hub*\n\n`;
+      message += `• Address: ${address}, ${city}, ${state} - ${pincode}\n`;
+      message += `• Name: ${name}\n`;
+      message += `• Phone: ${phone}\n`;
+      message += `• Address: ${address}\n\n`;
+      message += `🛍️ *Selected Items to Buy:*\n`;
+      selectedItems.forEach(item => {
+        message += `• ${item.name} x ${item.quantity} - ₹${item.price * item.quantity}\n`;
+      });
+      
+      const totalPrice = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      message += `\n💰 *Total Amount:* ₹${totalPrice}\n\nPlease confirm my order and shipping!`;
+      
+      const encodedURI = encodeURIComponent(message);
+      window.open(`https://wa.me/${phoneNumber}?text=${encodedURI}`, '_blank');
+      closeOrderModal();
+    }
+
+    function toggleCart(show) {
+      const drawer = document.getElementById('cartDrawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden', !show);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStore);
+    } else {
+      initStore();
+    }
+  </script>
+</body>
+</html>
