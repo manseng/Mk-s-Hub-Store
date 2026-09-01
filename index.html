@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mk's Hub Store | Exclusive Store & Admin</title>
+  <title>Mk's Hub Store | The Store You'll Adore</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -145,6 +145,10 @@
         <button type="button" onclick="filterCategory('Key Chains')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Key Chains</button>
         <button type="button" onclick="filterCategory('Cap')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Cap</button>
         <button type="button" onclick="filterCategory('Beauty')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Beauty</button>
+        <button type="button" onclick="filterCategory('Accessories')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Accessories</button>
+        <button type="button" onclick="filterCategory('Stationery')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Stationery</button>
+        <button type="button" onclick="filterCategory('Toys')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Toys</button>
+        <button type="button" onclick="filterCategory('Gadgets')" class="cat-btn flex-shrink-0 px-4 py-2 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-800 transition cursor-pointer shadow-xs">Gadgets</button>
       </div>
     </div>
 
@@ -299,6 +303,11 @@
                 <option value="Footwear">Footwear</option>
                 <option value="Key Chains">Key Chains</option>
                 <option value="Cap">Cap</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Toys">Toys</option>
+                <option value="Stationery">Stationery</option>
+                <option value="Gadgets">Gadgets</option>
               </select>
             </div>
           </div>
@@ -476,7 +485,8 @@
       { id: 3, name: 'Classic Streetwear Baseball Cap', category: 'Cap', originalPrice: 799, price: 499, rating: 4.5, specs: 'Adjustable Strap • Cotton', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80', reviews: [{ author: 'Dipankar B.', rating: 5, comment: 'Clean embroidery and solid fit.' }] },
       { id: 4, name: 'whisker Jeans for Men', category: 'Fashion', originalPrice: 999, price: 879, rating: 4.7, specs: 'Non Strechability', image: 'https://github.com/manseng/Mk-s-Hub-Store/blob/main/jeans.png?raw=true', reviews: [{ author: 'Vimal', rating: 5, comment: 'Good pant not the like too much baggy.' }] },
       { id: 5, name: 'R Madrid 2011/12 Home Kit Ronaldo', category: 'Fashion', originalPrice: 399, price: 299, rating: 4.3, specs: 'Fabric: Polyester , Sleeve: Short Sleeve, Pattern: Embroidered', image: 'https://github.com/manseng/Mk-s-Hub-Store/blob/main/realmadrid%20tshirt.png?raw=true', reviews: [{ author: 'Lavyansh Shripal', rating: 5, comment: 'I really like this jersey,its fabric, its sewn-on bandges and logos must buyy 10/10.' }] },
-      { id: 6, name: 'FENTON Trendy Round Analog Watch-For Men', category: 'Electronics', originalPrice: 489, price: 349, rating: 4.3, specs: 'Case/Bezel Material: Alloy, Occasion: Casual, Ideal: Men', image: 'https://github.com/manseng/Mk-s-Hub-Store/blob/main/watch.png?raw=true', reviews: [{ author: 'Fiaz Patel', rating: 4.8, comment: 'Amazing.' }] },
+      { id: 6, name: 'FENTON Trendy Round Analog Watch-For Men', category: 'Accessories', originalPrice: 489, price: 349, rating: 4.3, specs: 'Case/Bezel Material: Alloy, Occasion: Casual, Ideal: Men', image: 'https://github.com/manseng/Mk-s-Hub-Store/blob/main/watch.png?raw=true', reviews: [{ author: 'Fiaz Patel', rating: 4.8, comment: 'Amazing.' }] },
+      { id: 6, name: 'FENTON Trendy Round Analog Watch-For Men', category: 'Accessories', originalPrice: 489, price: 349, rating: 4.3, specs: 'Case/Bezel Material: Alloy, Occasion: Casual, Ideal: Men', image: 'https://github.com/manseng/Mk-s-Hub-Store/blob/main/watch.png?raw=true', reviews: [{ author: 'Fiaz Patel', rating: 4.8, comment: 'Amazing.' }] },
     ];
 
     let products = JSON.parse(localStorage.getItem('mkshub_products')) || defaultProducts;
